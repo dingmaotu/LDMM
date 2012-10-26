@@ -3,10 +3,11 @@ LDMM -- Li Ding Molecular Modeling Code (Version 0.4)
 
 C++ Classical Molecular Modeling Code for Pedagogical Purposes
 
-Copyright (C) 2011-2012, Li Ding <dingmaotu@126.com>
+Copyright (C) 2011-2012, Li Ding `dingmaotu at 126.com`
 Licenced under GPL v3
 
-* Introduction
+Introduction
+------------
 
 This is a molecular modeling code I wrote when I entered the Institute of
 Geology and Geophysics, CAS. I was a newbie of molecular modeling though I had
@@ -35,7 +36,8 @@ this:
 
 Performance is NOT the purpose of LDMM. Its purpose is education.
 
-* Installation
+Installation
+------------
 
 Currently There are two very primitive compiling options: Makefile or
 Scons. At first I use the Make system but it is quite inflexible: the code is
@@ -46,34 +48,33 @@ To compile, you need a working intel c++ compiler (free for academic use under
 Linux, thought I will change to gcc for future versions). Then type `make
 ldmm` or `scons release` to compile.
 
-* Usage
+Usage
+-----
 
 To use LDMM, type `ldmm [your config file]`. There is a sample config file called
 `ar.config` and associated `ar.gro` in the root directory.
 
-* Documentation
+Documentation
+-------------
 
 This is a very important part for LDMM but now it is not written. However,
 basic documentation will be added soon.
 
-* Changes
+Changes
+-------
 
-** 0.4
-
++ 0.4
     1. Add OpenMP support to parallelize the computation. This slightly speeds up the program.
 
-** 0.3
-
++ 0.3
     1. Add Batch Mode, which can do a series of NVT simulations by varying the temperature. 
     2. Automatically average of T and P (after BatchCollect steps)
-
-** 0.2
-
+	
++ 0.2
     1. Change the brute-force LJ12-6 computation to a neighber-list based algorithm, and added cut-off controls.
     2. Implement a Berendson heat bath to perform NVT simulations.
     3. Output common instant properties of the system: T, P, Potential, Kinetic, and Total Energy.
     4. Accessing of configuration files from the exe directory.
 
-** 0.1
-
++ 0.1
     1. NVE LJ12-6 Atomic Fluid Simulation (No cut-off)
