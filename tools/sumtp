@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+awk 'BEGIN{begNum = '$1';sum_t=0;sum_p=0; Num=0} NR>=begNum{sum_t+=$2;sum_p+=$3; Num+=1} END{printf("T: %.3f; P: %.3f\n", sum_t/Num, sum_p/Num/10000)}' $2

@@ -10,3 +10,9 @@
 *.lai
 *.la
 *.a
+
+# obj directory
+obj/*
+
+# python compiled bytecode
+*.pyc
