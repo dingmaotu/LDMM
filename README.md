@@ -63,18 +63,15 @@ basic documentation will be added soon.
 Changes
 -------
 
-+ 0.4
++ Version 0.4
     1. Add OpenMP support to parallelize the computation. This slightly speeds up the program.
-
-+ 0.3
++ Version 0.3
     1. Add Batch Mode, which can do a series of NVT simulations by varying the temperature. 
     2. Automatically average of T and P (after BatchCollect steps)
-	
-+ 0.2
++ Version 0.2
     1. Change the brute-force LJ12-6 computation to a neighber-list based algorithm, and added cut-off controls.
     2. Implement a Berendson heat bath to perform NVT simulations.
     3. Output common instant properties of the system: T, P, Potential, Kinetic, and Total Energy.
     4. Accessing of configuration files from the exe directory.
-
-+ 0.1
++ Version 0.1
     1. NVE LJ12-6 Atomic Fluid Simulation (No cut-off)
