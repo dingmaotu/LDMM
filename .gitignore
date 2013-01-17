@@ -11,8 +11,11 @@
 *.la
 *.a
 
-# obj directory
-obj/*
+# build directory
+build/*
+
+# the binary
+ldmm
 
 # python compiled bytecode
 *.pyc

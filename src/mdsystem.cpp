@@ -13,7 +13,7 @@
 using namespace std;
 
 MDSystem::MDSystem(MDConfigReader *r)
-    :_config(r),_curstep(0), _fail(false)
+    :_config(r), _fail(false), _curstep(0)
 {
     cout << "Setting up system..." << endl;
     _title = _config->GetOption("name");

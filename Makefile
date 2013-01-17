@@ -1,30 +1,49 @@
+ifeq ($(CXX),icpc)
+    OMPFLAG=-openmp
+else
+    OMPFLAG=-fopenmp
+endif
+
+CFLAGS = -c -O2 -Wall $(OMPFLAG)
+CPPFLAGS = -DNDEBUG
+LDFLAGS = $(OMPFLAG)
+
 APP = ldmm
-CC = icpc
-CFLAGS = -c -g -Wall -openmp
-CPPFLAGS += -I include
-LDFLAGS = -static-intel -openmp
+BUILDDIR = build
 
-vpath %.cpp src
-vpath %.o   obj
+.PHONY: all release debug
 
-output_obj = ./obj
+all: release
 
-sources=$(notdir $(wildcard ./src/*.cpp))
-objects=$(sources:.cpp=.o)
+release: $(APP)
 
+debug: CFLAGS = -c -g -Wall $(OMPFLAG)
+debug: CPPFLAGS = -UNDEBUG
+debug: $(APP)
+
+objects=\
+$(BUILDDIR)/configreader.o\
+$(BUILDDIR)/cubepbc.o\
+$(BUILDDIR)/groconfigreader.o\
+$(BUILDDIR)/groconfigwriter.o\
+$(BUILDDIR)/lj12_6.o\
+$(BUILDDIR)/main.o\
+$(BUILDDIR)/mdconfigreader.o\
+$(BUILDDIR)/mdsystem.o\
+$(BUILDDIR)/util.o\
+$(BUILDDIR)/vverlet.o
 
 $(APP): $(objects)
-	$(CC) $(LDFLAGS) $^ -o $@
+	$(CXX) $(LDFLAGS) $^ -o $@
 
-define ldmd_rules=
-$(1):$(2)
-endef
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
 
-$(eval $(foreach s, $(sources), $(call ldmd_rules, $(s:.cpp=.o),$(s) )))
+$(objects): | $(BUILDDIR)
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) $(CPPFLAGS) $^ -o $(output_obj)/$@
+$(BUILDDIR)/%.o: src/%.cpp
+	$(CXX) $(CFLAGS) $(CPPFLAGS) $< -o $@
 
 .PHONY: clean
 clean:
-	$(RM) $(APP) $(output_obj)/*
+	$(RM) $(APP) $(BUILDDIR)/*
